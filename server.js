@@ -26,23 +26,22 @@ const gsearch = require("./helpers/gsearch.js");
 const PORT = process.env.PORT || 8080;
 const app = express();
 
-// const isAllowedUrl = (string) => {
-//   try {
-//     const url = new URL(string);
-//     return url.hostname !== "puptraas.herokuapp.com";
-//   } catch (err) {
-//     return false;
-//   }
-// };
+const isAllowedUrl = (string) => {
+  try {
+    const url = new URL(string);
+    return url.hostname !== "puptraas.herokuapp.com";
+  } catch (err) {
+    return false;
+  }
+};
 
 app.use((request, response, next) => {
   const url = request.query.url;
-  console.log(url);
-  // if (url && !isAllowedUrl(url)) {
-  //   return response.status(500).send({
-  //     error: "URL is either invalid or not allowed",
-  //   });
-  // }
+  if (url && !isAllowedUrl(url)) {
+    return response.status(500).send({
+      error: "URL is either invalid or not allowed",
+    });
+  }
 
   response.set("Access-Control-Allow-Origin", "*");
 
