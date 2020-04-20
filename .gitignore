@@ -58,3 +58,6 @@ typings/
 .env
 
 service-account.json
+
+# Mac OS
+.DS_Store
